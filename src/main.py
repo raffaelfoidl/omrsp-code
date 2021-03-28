@@ -76,9 +76,11 @@ def _read_csv(file_path: str, expected_headers: Iterable[str], target_type: Type
 
 def read_oscar_data() -> Collection[OscarInfo]:
     """
-    Parses the CSV dataset with Oscar nomination and winners from 1928 until 2020 and deserializes it into OscarInfo model instances.
+    Parses the CSV dataset with Oscar nomination and winners from 1928 until 2020, applies a filter by year and category and deserializes the
+    entries satisfying the criteria into OscarInfo model instances.
 
-    :return: Returns a collection of OscarInfo instances that represents the raw information of the Oscar award dataset.
+    :return: Returns a collection of OscarInfo instances that represents information from the Oscar award dataset describing Oscar winners between
+    1986 and 2016 (both inclusively) from the category "Best Picture".
     :rtype: Collection[OscarInfo]
     """
 
