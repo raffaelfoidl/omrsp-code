@@ -1,10 +1,17 @@
 import csv
+import math
 import os
-from typing import Iterable, List, Collection, Type, TypeVar, Callable
 
 from src.awarded_movie import AwardedMovie
 from src.movie import Movie
 from src.oscar_info import OscarInfo
+
+import numpy as np
+import matplotlib.ticker as ticker
+import matplotlib.pyplot as plt
+
+from pathlib import Path
+from typing import Iterable, List, Collection, Type, TypeVar, Callable
 
 source_root, _ = os.path.split(__file__)
 data_folder = os.path.abspath(os.path.join(source_root, "..", "data"))
@@ -13,6 +20,7 @@ result_folder = os.path.abspath(os.path.join(source_root, "..", "result"))
 movie_data_file = os.path.join(data_folder, "movies.csv")
 oscars_data_file = os.path.join(data_folder, "the_oscar_award.csv")
 awarded_movies_result_file = os.path.join(result_folder, "awarded_movies.csv")
+awarded_movies_visualization_file = os.path.join(result_folder, "awarded_movies_visualization.png")
 
 _T = TypeVar('_T')
 
@@ -38,27 +46,32 @@ def _read_csv(file_path: str, expected_headers: Iterable[str], target_type: Type
     CSV file and also satisfied the given predicate.
     :rtype: Collection[_T]
     """
-    with open(file_path, encoding=encoding) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=delimiter)
-        return_value: List[_T] = []
+    try:
+        with open(file_path, encoding=encoding) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=delimiter)
+            return_value: List[_T] = []
 
-        headers = next(csv_reader)
-        if headers != expected_headers:
-            raise Exception(f"Unexpected CSV headers. Check if '{oscars_data_file}' is the correct file.\n"
-                            f"Expected: {expected_headers}\nActual:   {headers}")
+            headers = next(csv_reader)
+            if headers != expected_headers:
+                raise Exception(f"Unexpected CSV headers. Check if '{oscars_data_file}' is the correct file.\n"
+                                f"Expected: {expected_headers}\nActual:   {headers}")
 
-        for row in csv_reader:
-            try:
-                # as per the precondition formulated in the documentation, the model classes provide constructors that
-                # take the string value of each column as parameters and try to parse them into the correct data types
-                new_entry: _T = target_type(*row)
-            except Exception as ex:
-                print(f"Skipping entry {row} because it cannot be deserialized.\n  Error: {ex}")
+            for row in csv_reader:
+                try:
+                    # as per the precondition formulated in the documentation, the model classes provide constructors that
+                    # take the string value of each column as parameters and try to parse them into the correct data types
+                    new_entry: _T = target_type(*row)
+                except Exception as ex:
+                    print(f"Skipping entry {row} because it cannot be deserialized.\n  Error: {ex}")
 
-            if predicate(new_entry):
-                return_value.append(new_entry)
+                if predicate(new_entry):
+                    return_value.append(new_entry)
 
-        return return_value
+            return return_value
+    except FileNotFoundError as ex:
+        print(f"Could not read CSV file at \"{file_path}\".\n  Error: {ex}")
+        print(f"Aborting because the experiment cannot be conducted if at least one data set cannot be read.")
+        exit(1)
 
 
 def read_oscar_data() -> Collection[OscarInfo]:
@@ -86,8 +99,7 @@ def read_movie_data() -> Collection[Movie]:
     :rtype: Collection[Movie]
     """
 
-    # noinspection PyUnusedLocal
-    def is_relevant(movie: Movie) -> bool:
+    def is_relevant(_: Movie) -> bool:
         # all movie entries are relevant
         return True
 
@@ -126,11 +138,11 @@ def match_awarded_movies(oscar_infos: Iterable[OscarInfo], movies: Iterable[Movi
 
 def write_awarded_movies_to_file(awarded_movies: Iterable[AwardedMovie]) -> None:
     """
-    Creates a CSV file with in the local result folder that contains all movies that could be matched. More precisely,
+    Creates a CSV file within the local result folder that contains all movies that could be matched. More precisely,
     the CSV file will contain the name, IMDB score, gross revenue in the USA of all films that have been awarded the
     Oscar in the category "Best Picture" from 1986 to 2016 (both inclusively).
 
-    :param awarded_movies: the movies that were matched successfully  between the two datasets (Oscar awards, IMDB data)
+    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDB data)
     :rtype: None
     """
     with open(awarded_movies_result_file, "w", newline="", encoding="utf-8") as csv_file:
@@ -140,7 +152,61 @@ def write_awarded_movies_to_file(awarded_movies: Iterable[AwardedMovie]) -> None
         csv_writer.writerows(csv_rows)
 
 
+def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
+    """
+    Creates a PNG image within the local result folder that represents a visualization of the output of the data processing.
+    It is a plot that juxtaposes the gross revenue of all movies that won the Best Picture Oscar between 1986 and 2016 along
+    with their respective IMDB user score.
+
+    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDB data)
+    :rtype: None
+    """
+
+    def label_in_millions(value, _):
+        return f'{value * 1e-6:1.0f} M'
+
+    def next_hundred_million(value):
+        return math.ceil(value / 100_000_000) * 100_000_000
+
+    # prepare data: year and film on the x-axis, gross revenue and IMDB user score on the y-axes
+    x_labels = np.array(list(map(lambda movie: f"{movie.year}: {movie.movie}", awarded_movies)))
+    y_values_gross = np.array(list(map(lambda movie: movie.gross, awarded_movies)))
+    y_values_score = np.array(list(map(lambda movie: movie.score, awarded_movies)))
+
+    # general plot setup
+    fig, ax1 = plt.subplots(figsize=(10, 10))
+    plt.xticks(rotation=270)
+    plt.suptitle("Gross Revenue vs. IMDB Score of Oscar Best Picture Winners\n(1986-2016)", fontsize=16, weight="bold")
+    millions_formatter = ticker.FuncFormatter(label_in_millions)
+
+    # x-axis: display all years and movies
+    ax1.set_xlabel('Oscar Years and Films', weight="bold", labelpad=5)
+    ax1.xaxis.set_major_locator(ticker.FixedLocator(x_labels))
+    ax1.set_xticks(np.arange(len(x_labels)))
+    ax1.set_xticklabels(x_labels)
+
+    # first y-axis: display gross revenue in millions
+    ax1.set_ylabel('Gross Revenue in the USA\n(in Millions)', weight="bold", labelpad=10)
+    ax1.set_ylim([0, next_hundred_million(max(y_values_gross))])  # so that the highest y-value is not "glued" to the top of the diagram
+    ax1.yaxis.set_major_formatter(millions_formatter)  # so that numbers representing axis labels are not too big
+    ax1.plot(x_labels, y_values_gross, color='tab:green', marker=".")
+
+    # second y-axis: display IMDB user score
+    ax2 = ax1.twinx()  # the second y-axis should share the x-axis with the first y-axis
+    ax2.set_ylabel('IMDB User Score', weight="bold", labelpad=7)
+    ax2.set_ylim([0, 10])
+    ax2.yaxis.set_major_locator(ticker.FixedLocator(np.arange(0, 11)))  # display all numbers between 0 and 10
+    ax2.plot(x_labels, y_values_score, color='tab:blue', marker=".")
+
+    fig.tight_layout()
+    fig.savefig(awarded_movies_visualization_file)
+
+
 if __name__ == '__main__':
+    print(f"Ensuring result directory \"{result_folder}\" exists...", end="")
+    Path(result_folder).mkdir(parents=True, exist_ok=True)
+    print("Done.")
+
     oscar_data: Collection[OscarInfo] = read_oscar_data()
     print(f"Filtered {len(oscar_data)} oscar information entries.")
 
@@ -151,4 +217,7 @@ if __name__ == '__main__':
     print(f"Matched {len(matched_movies)} movies with awards.")
 
     write_awarded_movies_to_file(matched_movies)
-    print(f"Wrote to file {awarded_movies_result_file}.")
+    print(f"Wrote result of data processing to file \"{awarded_movies_result_file}\".")
+
+    visualize_awarded_movies(matched_movies)
+    print(f"Saved plot of processed data to file \"{awarded_movies_visualization_file}\".")
