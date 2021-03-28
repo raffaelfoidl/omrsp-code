@@ -2,9 +2,9 @@ import csv
 import math
 import os
 
-from src.awarded_movie import AwardedMovie
-from src.movie import Movie
-from src.oscar_info import OscarInfo
+from awarded_movie import AwardedMovie
+from movie import Movie
+from oscar_info import OscarInfo
 
 import numpy as np
 import matplotlib.ticker as ticker
@@ -208,10 +208,10 @@ if __name__ == '__main__':
     print("Done.")
 
     oscar_data: Collection[OscarInfo] = read_oscar_data()
-    print(f"Filtered {len(oscar_data)} oscar information entries.")
+    print(f"Filtered {len(oscar_data)} oscar information entries from \"{oscars_data_file}\".")
 
     movie_data: Collection[Movie] = read_movie_data()
-    print(f"Read {len(movie_data)} movie information entries.")
+    print(f"Read {len(movie_data)} movie information entries from \"{movie_data_file}\".")
 
     matched_movies: Collection[AwardedMovie] = match_awarded_movies(oscar_data, movie_data)
     print(f"Matched {len(matched_movies)} movies with awards.")
