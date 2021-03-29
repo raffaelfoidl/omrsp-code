@@ -1,6 +1,6 @@
-# Examining the Progression of the Revenue of Oscar “Best Picture” Winners and Their IMDB User Score From 1986 to 2016
+# Examining the Progression of the Revenue of Oscar “Best Picture” Winners and Their IMDb User Score From 1986 to 2016
 
-This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDB user score of movies that were awarded with an Oscar in
+This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded with an Oscar in
 the category "Best Picture" have evolved and fluctuated over the last three decades - more specifically, from 1986 to 2016. from 1986 until 2016.
 
 ## Description
@@ -41,7 +41,7 @@ The listing below illustrates the directory structure of the experiment, along w
 ```
 
 * `data`: raw data sets that are processed
-    * `movies.csv`: 6820 movies from 1986 until 2016 with attributes such as budget, genre, gross revenue, IMDB user score; data was scraped from IMDB
+    * `movies.csv`: 6820 movies from 1986 until 2016 with attributes such as budget, genre, gross revenue, IMDb user score; data was scraped from IMDb
     * `the_oscar_award.csv`: records of past Oscar winners and nominees between 1927 and 2018; data was scraped from the official Academy Awards
       search site
 * `documentation`: files that provide additional information about the experiment (might overlap with information presented in this `README`)

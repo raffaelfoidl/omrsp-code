@@ -95,9 +95,9 @@ def read_oscar_data() -> Collection[OscarInfo]:
 
 def read_movie_data() -> Collection[Movie]:
     """
-    Parses the CSV dataset with IMDB information about movies from 1986 to 2016 and deserializes it into Movie model instances.
+    Parses the CSV dataset with IMDb information about movies from 1986 to 2016 and deserializes it into Movie model instances.
 
-    :return: Returns a collection of Movie instances that represents the raw information of the IMDB movie dataset.
+    :return: Returns a collection of Movie instances that represents the raw information of the IMDb movie dataset.
     :rtype: Collection[Movie]
     """
 
@@ -113,12 +113,12 @@ def read_movie_data() -> Collection[Movie]:
 
 def match_awarded_movies(oscar_infos: Iterable[OscarInfo], movies: Iterable[Movie]) -> Collection[AwardedMovie]:
     """
-    Matches the information gathered from the Oscar dataset with the one gathered from the IMDB movie dataset. Two entries are
+    Matches the information gathered from the Oscar dataset with the one gathered from the IMDb movie dataset. Two entries are
     defined to be "matching" if the title and year of the film described are equal in both datasets - i. e. film identity is
     defined by the name and finalization/release year.
 
     :param oscar_infos: relevant oscar award information to be taken into consideration for the matching
-    :param movies: movie data with IMDB information (gross revenue, user score) to be matched with the oscar infos
+    :param movies: movie data with IMDb information (gross revenue, user score) to be matched with the oscar infos
     :return: Returns a collection of AwardedMovie model instances that represents the processed data gathered by means of the matching.
     :rtype: Collection[AwardedMovie]
     """
@@ -141,10 +141,10 @@ def match_awarded_movies(oscar_infos: Iterable[OscarInfo], movies: Iterable[Movi
 def write_awarded_movies_to_file(awarded_movies: Iterable[AwardedMovie]) -> None:
     """
     Creates a CSV file within the local result folder that contains all movies that could be matched. More precisely,
-    the CSV file will contain the name, IMDB score, gross revenue in the USA of all films that have been awarded the
+    the CSV file will contain the name, IMDb score, gross revenue in the USA of all films that have been awarded the
     Oscar in the category "Best Picture" from 1986 to 2016 (both inclusively).
 
-    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDB data)
+    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDb data)
     :rtype: None
     """
     with open(awarded_movies_result_file, "w", newline="", encoding="utf-8") as csv_file:
@@ -158,9 +158,9 @@ def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     """
     Creates a PNG image within the local result folder that represents a visualization of the output of the data processing.
     It is a plot that juxtaposes the gross revenue of all movies that won the Best Picture Oscar between 1986 and 2016 along
-    with their respective IMDB user score.
+    with their respective IMDb user score.
 
-    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDB data)
+    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDb data)
     :rtype: None
     """
 
@@ -170,7 +170,7 @@ def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     def next_hundred_million(value):
         return math.ceil(value / 100_000_000) * 100_000_000
 
-    # prepare data: year and film on the x-axis, gross revenue and IMDB user score on the y-axes
+    # prepare data: year and film on the x-axis, gross revenue and IMDb user score on the y-axes
     x_labels = np.array(list(map(lambda movie: f"{movie.year}: {movie.movie}", awarded_movies)))
     y_values_revenue = np.array(list(map(lambda movie: movie.gross_revenue, awarded_movies)))
     y_values_score = np.array(list(map(lambda movie: movie.score, awarded_movies)))
@@ -178,7 +178,7 @@ def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     # general plot setup
     fig, ax1 = plt.subplots(figsize=(10, 10))
     plt.xticks(rotation=270)
-    plt.suptitle("Gross Revenue vs. IMDB Score of Oscar Best Picture Winners\n(1986-2016)", fontsize=16, weight="bold")
+    plt.suptitle("Gross Revenue vs. IMDb Score of Oscar Best Picture Winners\n(1986-2016)", fontsize=16, weight="bold")
     millions_formatter = ticker.FuncFormatter(label_in_millions)
 
     # x-axis: display all years and movies
@@ -193,9 +193,9 @@ def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     ax1.yaxis.set_major_formatter(millions_formatter)  # so that numbers representing axis labels are not too big
     ax1.plot(x_labels, y_values_revenue, color='tab:green', marker=".")
 
-    # second y-axis: display IMDB user score
+    # second y-axis: display IMDb user score
     ax2 = ax1.twinx()  # the second y-axis should share the x-axis with the first y-axis
-    ax2.set_ylabel('IMDB User Score', weight="bold", labelpad=7)
+    ax2.set_ylabel('IMDb User Score', weight="bold", labelpad=7)
     ax2.set_ylim([0, 10])
     ax2.yaxis.set_major_locator(ticker.FixedLocator(np.arange(0, 11)))  # display all numbers between 0 and 10
     ax2.plot(x_labels, y_values_score, color='tab:blue', marker=".")
