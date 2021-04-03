@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/352670789.svg)](https://zenodo.org/badge/latestdoi/352670789)
+
 # Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016
 
 This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded with an Oscar in
