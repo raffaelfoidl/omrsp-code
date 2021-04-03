@@ -1,4 +1,4 @@
-# Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 to 2016
+# Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016
 
 This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded with an Oscar in
 the category "Best Picture" have evolved and fluctuated over the last three decades - more specifically, from 1986 to 2016.
@@ -12,9 +12,9 @@ experiment, two films are defined to be equal if and only if their titles and re
 ## Data Sources
 
 * Fontes, Raphael. (2020, February). The Oscar Award, 1927 - 2020, Version 7. Retrieved March 27, 2021
-  from <https://www.kaggle.com/unanimad/the-oscar-award/version/7>.
+  from <https://www.kaggle.com/unanimad/the-oscar-award/version/7>. 892 KB.
 * Grijalva, Daniel. (2017, October). Movie Industry, Version 2. Retrieved March 27, 2021
-  from <https://www.kaggle.com/danielgrijalvas/movies/version/2>.
+  from <https://www.kaggle.com/danielgrijalvas/movies/version/2>. 953 KB.
 
 ## Data Flow
 

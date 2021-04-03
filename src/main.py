@@ -53,7 +53,7 @@ def _read_csv(file_path: str, expected_headers: Iterable[str], target_type: Type
 
             headers = next(csv_reader)
             if headers != expected_headers:
-                raise Exception(f"Unexpected CSV headers. Check if '{oscars_data_file}' is the correct file.\n"
+                raise Exception(f"Unexpected CSV headers. Check if '{file_path}' is the correct file.\n"
                                 f"Expected: {expected_headers}\nActual:   {headers}")
 
             for row in csv_reader:
