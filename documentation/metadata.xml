@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml system="https://pasta.edirepository.org" packageId="10.5281/zenodo.4661146" xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd">
+    <access system="https://pasta.edirepository.org" scope="document" order="allowFirst" authSystem="https://pasta.edirepository.org/authentication">
+        <allow>
+            <principal>https://orcid.org/0000-0002-1748-1571</principal>
+            <permission>all</permission>
+        </allow>
+        <allow>
+            <principal>public</principal>
+            <permission>read</permission>
+        </allow>
+    </access>
+    <dataset>
+        <title>Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016</title>
+        <creator>
+            <individualName>
+                <givenName>Raffael</givenName>
+                <surName>Foidl</surName>
+            </individualName>
+            <organizationName>Vienna University of Technology</organizationName>
+            <electronicMailAddress>e11775820@student.tuwien.ac.at</electronicMailAddress>
+            <userId directory="https://orcid.org">0000-0002-1748-1571</userId>
+        </creator>
+        <metadataProvider>
+            <individualName>
+                <givenName>Raffael</givenName>
+                <surName>Foidl</surName>
+            </individualName>
+            <organizationName>Vienna University of Technology</organizationName>
+            <electronicMailAddress>e11775820@student.tuwien.ac.at</electronicMailAddress>
+            <userId directory="https://orcid.org">0000-0002-1748-1571</userId>
+        </metadataProvider>
+        <pubDate>2021-04-05</pubDate>
+        <abstract>
+            <para>This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded an Oscar in the category "Best Picture" have evolved and fluctuated over the last three decades. More specifically, movies that were released between 1986 and 2016 are investigated.</para>
+            <para>It builds upon two data sources, one of which provide data about Oscar awarded movies. The other one is a compilation of general information about movies that is publicly accessible via the IMDb website.</para>
+            <para>When processing these datasets, the relevant information is assembled by "matching" movie entries from both sources. In the context of this experiment, two films are defined to be equal if and only if their titles and release years are equal.</para>
+        </abstract>
+        <keywordSet>
+            <keyword>movies</keyword>
+            <keyword>movie industry</keyword>
+            <keyword>imdb</keyword>
+            <keyword>data history</keyword>
+            <keyword>movie awards</keyword>
+            <keyword>oscars</keyword>
+            <keyword>academy award</keyword>
+            <keyword>best picture</keyword>
+        </keywordSet>
+        <intellectualRights>This data package is released to the "public domain" under Creative Commons CC0 1.0 "No Rights Reserved" (see: https://creativecommons.org/publicdomain/zero/1.0/). It is considered professional etiquette to provide attribution of the original work if this data package is shared in whole or by individual components. A generic citation is provided for this data package on the website https://portal.edirepository.org (herein "website") in the summary metadata page. Communication (and collaboration) with the creators of this data package is recommended to prevent duplicate research or publication. This data package (and its components) is made available "as is" and with no warranty of accuracy or fitness for use. The creators of this data package and the website shall not be liable for any damages resulting from misinterpretation or misuse of the data package or its components. Periodic updates of this data package may be available from the website. Thank you.</intellectualRights>
+        <coverage>
+            <temporalCoverage>
+                <rangeOfDates>
+                    <beginDate>
+                        <calendarDate>1986</calendarDate>
+                    </beginDate>
+                    <endDate>
+                        <calendarDate>2016</calendarDate>
+                    </endDate>
+                </rangeOfDates>
+            </temporalCoverage>
+        </coverage>
+        <maintenance>
+            <description>
+<para>There is no ongoing data collection. Updates of the input data are not expected. Output data changes only if the implementation of the data processing part of the experiment is modified.</para>
+</description>
+            <maintenanceUpdateFrequency>notPlanned</maintenanceUpdateFrequency>
+        </maintenance>
+        <contact>
+            <individualName>
+                <givenName>Raffael</givenName>
+                <surName>Foidl</surName>
+            </individualName>
+            <organizationName>Vienna University of Technology</organizationName>
+            <electronicMailAddress>e11775820@student.tuwien.ac.at</electronicMailAddress>
+            <userId directory="https://orcid.org">0000-0002-1748-1571</userId>
+        </contact>
+        <publisher>
+            <individualName>
+                <givenName>Raffael</givenName>
+                <surName>Foidl</surName>
+            </individualName>
+            <organizationName>Vienna University of Technology</organizationName>
+            <electronicMailAddress>e11775820@student.tuwien.ac.at</electronicMailAddress>
+            <userId directory="https://orcid.org">0000-0002-1748-1571</userId>
+        </publisher>
+        <pubPlace>https://zenodo.org/badge/latestdoi/352670789</pubPlace>
+        <methods>
+            <methodStep>
+                <description>
+                    <para>Parse and extract winners of the "Best Picture" category between 1986 and 2016.</para>
+                </description>
+            </methodStep>
+            <methodStep>
+                <description>
+                    <para>Parse all information about 220 movies per year from the last 30 years.</para>
+                </description>
+            </methodStep>
+            <methodStep>
+                <description>
+                    <para>Compilation of year, name, revenue (USA) and IMDb score of "Best Picture" winning movies in the last 30 years.</para>
+                </description>
+            </methodStep>
+            <methodStep>
+                <description>
+                    <para>Write a CSV file with the data resulting from processing the input datasets. Year, name, revenue and IMDb score are the fields.</para>
+                </description>
+            </methodStep>
+            <methodStep>
+                <description>
+                    <para>Create a chart depicting the gross revenue (USA) and IMDb score of the compiled movies in one image.</para>
+                </description>
+            </methodStep>
+        </methods>
+        <project>
+            <title>Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016</title>
+            <personnel>
+                <individualName>
+                    <givenName>Raffael</givenName>
+                    <surName>Foidl</surName>
+                </individualName>
+                <organizationName>Vienna University of Technology</organizationName>
+                <electronicMailAddress>e11775820@student.tuwien.ac.at</electronicMailAddress>
+                <userId directory="https://orcid.org">0000-0002-1748-1571</userId>
+                <role>Project Creator</role>
+            </personnel>
+            <abstract>
+<para>This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded an Oscar in the category "Best Picture" have evolved and fluctuated over the last three decades. More specifically, movies that were released between 1986 and 2016 are investigated.</para>
+<para>It builds upon two data sources, one of which provide data about Oscar awarded movies. The other one is a compilation of general information about movies that is publicly accessible via the IMDb website.</para>
+<para>When processing these datasets, the relevant information is assembled by "matching" movie entries from both sources. In the context of this experiment, two films are defined to be equal if and only if their titles and release years are equal.</para>
+</abstract>
+        </project>
+        <dataTable>
+            <entityName>awarded_movies</entityName>
+            <entityDescription>Compilation of IMDb user score and gross revenue in the USA of "Best Picture" Oscar winners per year (1986-2016)</entityDescription>
+            <physical>
+                <objectName>awarded_movies.csv</objectName>
+                <size unit="byte">1213</size>
+                <authentication method="MD5">b6ebf062395d06b0c8fef5e6db94c0ee</authentication>
+                <dataFormat>
+                    <textFormat>
+                        <numHeaderLines>1</numHeaderLines>
+                        <recordDelimiter>\r\n</recordDelimiter>
+                        <attributeOrientation>column</attributeOrientation>
+                        <simpleDelimited>
+                            <fieldDelimiter>,</fieldDelimiter>
+                            <quoteCharacter>"</quoteCharacter>
+                        </simpleDelimited>
+                    </textFormat>
+                </dataFormat>
+                <distribution>
+                    <online>
+                        <url>https://raw.githubusercontent.com/raffaelfoidl/omrsp-code/main/result/awarded_movies.csv</url>
+                    </online>
+                </distribution>
+            </physical>
+            <attributeList>
+                <attribute>
+                    <attributeName>year</attributeName>
+                    <attributeLabel>Release Year</attributeLabel>
+                    <attributeDefinition>Release year of the Oscar awarded film; typically one year before the ceremony at which it was awarded.</attributeDefinition>
+                    <storageType typeSystem="XML Schema Datatypes">integer</storageType>
+                    <measurementScale>
+                        <ratio>
+                            <unit>
+                                <standardUnit>number</standardUnit>
+                            </unit>
+                            <numericDomain>
+                                <numberType>integer</numberType>
+                                <bounds>
+                                    <minimum exclusive="false">1986.0</minimum>
+                                    <maximum exclusive="false">2016.0</maximum>
+                                </bounds>
+                            </numericDomain>
+                        </ratio>
+                    </measurementScale>
+                </attribute>
+                <attribute>
+                    <attributeName>movie</attributeName>
+                    <attributeLabel>Movie Title</attributeLabel>
+                    <attributeDefinition>The title of the movie that was awarded a "Best Picture" Oscar.</attributeDefinition>
+                    <storageType typeSystem="XML Schema Datatypes">string</storageType>
+                    <measurementScale>
+                        <nominal>
+                            <nonNumericDomain>
+                                <textDomain>
+                                    <definition>The title of the movie that was awarded a "Best Picture" Oscar.</definition>
+                                </textDomain>
+                            </nonNumericDomain>
+                        </nominal>
+                    </measurementScale>
+                </attribute>
+                <attribute>
+                    <attributeName>score</attributeName>
+                    <attributeLabel>IMDb Score</attributeLabel>
+                    <attributeDefinition>The IMDb user score of the movie that was awarded a "Best Picture" Oscar.</attributeDefinition>
+                    <storageType typeSystem="XML Schema Datatypes">float</storageType>
+                    <measurementScale>
+                        <ratio>
+                            <unit>
+                                <standardUnit>number</standardUnit>
+                            </unit>
+                            <numericDomain>
+                                <numberType>real</numberType>
+                                <bounds>
+                                    <minimum exclusive="false">0.0</minimum>
+                                    <maximum exclusive="false">10.0</maximum>
+                                </bounds>
+                            </numericDomain>
+                        </ratio>
+                    </measurementScale>
+                </attribute>
+                <attribute>
+                    <attributeName>gross_revenue</attributeName>
+                    <attributeLabel>Gross Revenue (USA)</attributeLabel>
+                    <attributeDefinition>The gross revenue in the USA of the movie that was awarded a "Best Picture" movie.</attributeDefinition>
+                    <storageType typeSystem="XML Schema Datatypes">float</storageType>
+                    <measurementScale>
+                        <ratio>
+                            <unit>
+                                <standardUnit>number</standardUnit>
+                            </unit>
+                            <numericDomain>
+                                <numberType>real</numberType>
+                            </numericDomain>
+                        </ratio>
+                    </measurementScale>
+                </attribute>
+            </attributeList>
+            <caseSensitive>no</caseSensitive>
+            <numberOfRecords>31</numberOfRecords>
+        </dataTable>
+    </dataset>
+    <additionalMetadata>
+        <metadata>
+            <emlEditor app="ezEML" release="2021.03.29"></emlEditor>
+        </metadata>
+    </additionalMetadata>
+</eml:eml>
