@@ -2,8 +2,9 @@
 
 # Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016
 
-This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded with an Oscar in
-the category "Best Picture" have evolved and fluctuated over the last three decades - more specifically, from 1986 to 2016.
+This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded an Oscar in the
+category "Best Picture" have evolved and fluctuated over the last three decades. More specifically, movies that were released between 1986 and 2016
+are investigated.
 
 It builds upon two data sources, one of which provide data about Oscar awarded movies. The other one is a compilation of general information about
 movies that is publicly accessible via the IMDb website.
@@ -12,6 +13,8 @@ When processing these datasets, the relevant information is assembled by "matchi
 experiment, two films are defined to be equal if and only if their titles and release years are equal.
 
 ## Data Sources
+
+The project is based on two publicly available datasets which are already part of the files in this repository.
 
 * Fontes, Raphael. (2020, February). The Oscar Award, 1927 - 2020, Version 7. Retrieved March 27, 2021
   from <https://www.kaggle.com/unanimad/the-oscar-award/version/7>. 892 KB.
@@ -107,7 +110,7 @@ and shell environment:
 | Unix/MacOS csh     | `source .venv/bin/activate.csh`  |
 | Unix/MacOS fish    | `source .venv/bin/activate.fish` |
 
-After activating the virtual environment, your shell's prompt should be prefixed with `(.venv)` and running `python`, `pip`and the like will execute
+After activating the virtual environment, your shell's prompt should be prefixed with `(.venv)` and running `python`, `pip` and the like will execute
 the particular version of the Python interpreter the virtual environment is based on. On Unix-like systems, this can be verified using `which python`,
 on Windows with `where python`. The command should return a path to the executable within the `.venv` folder.
 
