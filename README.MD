@@ -112,7 +112,7 @@ and shell environment:
 
 After activating the virtual environment, your shell's prompt should be prefixed with `(.venv)` and running `python`, `pip` and the like will execute
 the particular version of the Python interpreter the virtual environment is based on. On Unix-like systems, this can be verified using `which python`,
-on Windows with `where python`. The command should return a path to the executable within the `.venv` folder.
+on Windows with `where python`. The command should return a path to the executable within the `.venv` folder on top.
 
 _**Note:** When you are done with the experiment and want to exit the virtual environment, simply type `deactivate` (this command is registered upon
 activating the virtual environment) or - if that should fail - close the shell._

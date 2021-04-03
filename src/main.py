@@ -25,26 +25,28 @@ awarded_movies_visualization_file = os.path.join(result_folder, "awarded_movies_
 _T = TypeVar('_T')
 
 
-def _read_csv(file_path: str, expected_headers: Iterable[str], target_type: Type[_T], predicate: Callable[[_T], bool],
-              encoding="utf-8", delimiter=",") -> Collection[_T]:
+def read_csv(file_path: str, expected_headers: Iterable[str], target_type: Type[_T], predicate: Callable[[_T], bool],
+             encoding="utf-8", delimiter=",") -> Collection[_T]:
     """
     Generic function to deserialize a CSV file into a collection of instances of a specifiable model class. The model class
-    has to provide a constructor that accepts string parameters representing the columns of a row in the CSV file.
+    has to provide a constructor that accepts string parameters representing the columns of a row in the CSV file, in the order defined by the file.
 
-    :param file_path: the file path to the CSV file to be read
-    :param expected_headers: The headers the CSV file is expected to exhibit. If diverging headers are encountered,
-     an exception with information about the headers that were found in the file is thrown.
-    :param target_type: The type (i. e. class) into which CSV entries are deserialized. The class is expected to provide a constructor
-    that takes the columns' values as string arguments and constructs an instance from them. If such a constructor is not available, a
-    runtime error will ensue. If the constructor invocation itself fails - e. g. due to a string -> int parsing error - a warning is
-    printed to stdout and the corresponding row is skipped, i. e. execution continues normally.
-    :param predicate: A row entry read from the CSV is added to the return value only if the predicate, invoked with the deserialized
-    model instance as argument, evaluates to true.
-    :param encoding: The encoding to be used when reading the file.
-    :param delimiter: a one-character string to be used as the column separator
-    :return: Returns a collection of instances of the generic type parameter that were successfully deserialized from the specified
-    CSV file and also satisfied the given predicate.
-    :rtype: Collection[_T]
+    **file_path:** the file path to the CSV file to be read<br/>
+    **expected_headers:** The headers the CSV file is expected to exhibit. If diverging headers are encountered,
+     an exception with information about the headers that were found in the file is thrown.<br/>
+    **target_type:** The type (i. e. class) into which CSV entries are deserialized. The class is expected to provide a constructor
+     that takes the columns' values as string arguments and constructs an instance from them. If such a constructor is not available, a
+     runtime error will ensue. If the constructor invocation itself fails - e. g. due to a string -> int parsing error - a warning is
+     printed to stdout and the corresponding row is skipped, i. e. execution continues normally.<br/>
+    **predicate:** A row entry read from the CSV is added to the return value only if the predicate, invoked with the deserialized
+     model instance as argument, evaluates to true.<br/>
+    **encoding:** The encoding to be used when reading the file.<br/>
+    **delimiter:** a one-character string to be used as the column separator<br/>
+
+    **returns:** Returns a collection of instances of the generic type parameter that were successfully deserialized from the specified
+     CSV file and also satisfied the given predicate.<br/>
+
+    **return type:** `Collection[_T]`
     """
     try:
         with open(file_path, encoding=encoding) as csv_file:
@@ -77,28 +79,30 @@ def _read_csv(file_path: str, expected_headers: Iterable[str], target_type: Type
 def read_oscar_data() -> Collection[OscarInfo]:
     """
     Parses the CSV dataset with Oscar nomination and winners from 1928 until 2020, applies a filter by year and category and deserializes the
-    entries satisfying the criteria into OscarInfo model instances.
+    entries satisfying the criteria into `OscarInfo` model instances.
 
-    :return: Returns a collection of OscarInfo instances that represents information from the Oscar award dataset describing Oscar winners between
-    1986 and 2016 (both inclusively) from the category "Best Picture".
-    :rtype: Collection[OscarInfo]
+    **returns:** Returns a collection of `OscarInfo` instances that represents information from the Oscar award dataset describing Oscar winners
+     released 1986 and 2016 (both inclusively) from the category "Best Picture".<br/>
+
+    **return type:** `Collection[OscarInfo]`
     """
 
     def is_relevant(oscar_info: OscarInfo) -> bool:
-        # we are only interested in oscar infos that represent the winners of a "Best Picture" award between 1986 and 2016 (both inclusively)
+        # we are only interested in oscar infos that represent the winners of a "Best Picture" award released between 1986 and 2016 (both inclusively)
         return (1986 <= oscar_info.year_film <= 2016) and (oscar_info.category.lower() == "best picture") and (oscar_info.winner is True)
 
     expected_headers = ["year_film", "year_ceremony", "ceremony", "category", "name", "film", "winner"]
 
-    return _read_csv(oscars_data_file, expected_headers, OscarInfo, is_relevant)
+    return read_csv(oscars_data_file, expected_headers, OscarInfo, is_relevant)
 
 
 def read_movie_data() -> Collection[Movie]:
     """
-    Parses the CSV dataset with IMDb information about movies from 1986 to 2016 and deserializes it into Movie model instances.
+    Parses the CSV dataset with IMDb information about movies from 1986 to 2016 and deserializes it into `Movie` model instances.
 
-    :return: Returns a collection of Movie instances that represents the raw information of the IMDb movie dataset.
-    :rtype: Collection[Movie]
+    **returns:** Returns a collection of `Movie` instances that represents the raw information of the IMDb movie dataset.<br/>
+
+    **return type:** `Collection[Movie]`
     """
 
     def is_relevant(_: Movie) -> bool:
@@ -108,7 +112,7 @@ def read_movie_data() -> Collection[Movie]:
     expected_headers = ["budget", "company", "country", "director", "genre", "gross", "name", "rating",
                         "released", "runtime", "score", "star", "votes", "writer", "year"]
 
-    return _read_csv(movie_data_file, expected_headers, Movie, is_relevant)
+    return read_csv(movie_data_file, expected_headers, Movie, is_relevant)
 
 
 def match_awarded_movies(oscar_infos: Iterable[OscarInfo], movies: Iterable[Movie]) -> Collection[AwardedMovie]:
@@ -117,10 +121,12 @@ def match_awarded_movies(oscar_infos: Iterable[OscarInfo], movies: Iterable[Movi
     defined to be "matching" if the title and year of the film described are equal in both datasets - i. e. film identity is
     defined by the name and finalization/release year.
 
-    :param oscar_infos: relevant oscar award information to be taken into consideration for the matching
-    :param movies: movie data with IMDb information (gross revenue, user score) to be matched with the oscar infos
-    :return: Returns a collection of AwardedMovie model instances that represents the processed data gathered by means of the matching.
-    :rtype: Collection[AwardedMovie]
+    **oscar_infos:** relevant oscar award information to be taken into consideration for the matching<br/>
+    **movies:** movie data with IMDb information (gross revenue, user score) to be matched with the oscar infos<br/>
+
+    **returns:** Returns a collection of `AwardedMovie` model instances that represents the processed data gathered by means of the matching.<br/>
+
+    **return type:** `Collection[AwardedMovie]`
     """
     awarded_movies: List[AwardedMovie] = []
 
@@ -142,10 +148,11 @@ def write_awarded_movies_to_file(awarded_movies: Iterable[AwardedMovie]) -> None
     """
     Creates a CSV file within the local result folder that contains all movies that could be matched. More precisely,
     the CSV file will contain the name, IMDb score, gross revenue in the USA of all films that have been awarded the
-    Oscar in the category "Best Picture" from 1986 to 2016 (both inclusively).
+    Oscar in the category "Best Picture" and were released between 1986 and 2016 (both inclusively).
 
-    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDb data)
-    :rtype: None
+    **awarded_movies:** the movies that were matched successfully between the two datasets (Oscar awards, IMDb data)<br/>
+
+    **return type:** `None`
     """
     with open(awarded_movies_result_file, "w", newline="", encoding="utf-8") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=",", quotechar="\"", quoting=csv.QUOTE_MINIMAL)
@@ -157,11 +164,12 @@ def write_awarded_movies_to_file(awarded_movies: Iterable[AwardedMovie]) -> None
 def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     """
     Creates a PNG image within the local result folder that represents a visualization of the output of the data processing.
-    It is a plot that juxtaposes the gross revenue of all movies that won the Best Picture Oscar between 1986 and 2016 along
+    It is a plot that juxtaposes the gross revenue of all movies that won the Best Picture Oscar and were released between 1986 and 2016, along
     with their respective IMDb user score.
 
-    :param awarded_movies: the movies that were matched successfully between the two datasets (Oscar awards, IMDb data)
-    :rtype: None
+    **awarded_movies:** the movies that were matched successfully between the two datasets (Oscar awards, IMDb data)<br/>
+
+    **return type:** `None`
     """
 
     def label_in_millions(value, _):
@@ -204,7 +212,12 @@ def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     fig.savefig(awarded_movies_visualization_file)
 
 
-if __name__ == '__main__':
+def main() -> None:
+    """
+    Bootstrapper method of the script. Executes the methods necessary to conduct the experiment in the correct order.
+
+    **return type:** `None`
+    """
     print(f"Ensuring result directory \"{result_folder}\" exists...", end="")
     Path(result_folder).mkdir(parents=True, exist_ok=True)
     print("Done.")
@@ -223,3 +236,7 @@ if __name__ == '__main__':
 
     visualize_awarded_movies(matched_movies)
     print(f"Saved plot of processed data to file \"{awarded_movies_visualization_file}\".")
+
+
+if __name__ == '__main__':
+    main()

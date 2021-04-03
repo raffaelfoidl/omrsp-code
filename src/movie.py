@@ -2,21 +2,54 @@ from datetime import datetime
 
 
 class Movie:
+    """
+    Represents information about a movie that is available via IMDb.
+    """
+
     budget: float
+    """The budget of the movie."""
+
     company: str
+    """The company which produced this movie."""
+
     country: str
+    """The country of origin of the movie."""
+
     director: str
+    """The director of the movie."""
+
     genre: str
+    """The main genre of the movie."""
+
     gross_revenue: float
+    """The gross revenue the movie generated in the USA."""
+
     name: str
+    """The title of the movie."""
+
     rating: str
+    """The age rating of the movie."""
+
     released: datetime
+    """The release date of the movie."""
+
     runtime: int
+    """The duration of the movie."""
+
     score: float
+    """The IMDb user rating of the movie."""
+
     star: str
+    """The main actor or actress of the movie."""
+
     votes: int
+    """The number of users who voted for the movie."""
+
     writer: str
+    """The main writer of the movie."""
+
     year: int
+    """The release year of the movie."""
 
     def __init__(self, budget: str, company: str, country: str, director: str, genre: str, gross_revenue: str, name: str,
                  rating: str, released: str, runtime: str, score: str, star: str, votes: str, writer: str,
