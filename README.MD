@@ -67,8 +67,9 @@ Files that are prefixed with an asterisk (`*`) are absolutely imperative to exec
 │   │   ├── main.html
 │   │   ├── movie.html
 │   │   └── oscar_info.html
-│   ├── metadata.xml
-│   └── visualization_description.txt
+│   │── data_metadata.xml
+│   │── visualization_description.txt
+|   └── visualization_metadata.txt
 ├── result
 │   ├── awarded_movies.csv
 │   └── awarded_movies_visualization.png
@@ -93,6 +94,7 @@ Files that are prefixed with an asterisk (`*`) are absolutely imperative to exec
     * `metadata.xml`: [EML](https://eml.ecoinformatics.org/) compliant `XML` representation of metadata about the experiment (abstract, creator,
       description of output data, ...)
     * `visualization_description.txt`: textual documentation/description of the output diagram
+    * `visualization_metadata.txt`: metadata about the image representing the output diagram (size, resolution, MIME type, modified date, ...)
 * `result`: represents the result ("output") of the experiment
     * `awarded_movies.csv`: the raw result data with the movies' release years, IMDb scores, and gross revenues (USA) as fields ("columns")
     * `awarded_movies_visualization.png`: a plot that depicts the gross revenue (USA) as well as the IMDb scores of the compiled movies in one line
