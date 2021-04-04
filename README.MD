@@ -27,7 +27,7 @@ category "Best Picture" have evolved and fluctuated over the last three decades.
 are investigated.
 
 It builds upon two data sources, one of which provide data about Oscar awarded movies. The other one is a compilation of general information about
-movies that is publicly accessible via the IMDb website.
+movies that are publicly accessible via the IMDb website.
 
 When processing these datasets, the relevant information is assembled by "matching" movie entries from both sources. In the context of this
 experiment, two films are defined to be equal if and only if their titles and release years are equal.
@@ -90,7 +90,7 @@ Files that are prefixed with an asterisk (`*`) are absolutely imperative to exec
 * `documentation`: files that provide additional information about the experiment
     * `data_flow`: high-level architectural overview of how data is processed, in `PNG` and `PDF` format
     * `src`: source code documentation in `HTML` generated from docstrings, `index.html` as entrypoint for the webbrowser
-    * `metadata.xml`: [EML](https://eml.ecoinformatics.org/) conform `XML` representation of metadata about the experiment (abstract, creator,
+    * `metadata.xml`: [EML](https://eml.ecoinformatics.org/) compliant `XML` representation of metadata about the experiment (abstract, creator,
       description of output data, ...)
     * `visualization_description.txt`: textual documentation/description of the output diagram
 * `result`: represents the result ("output") of the experiment
