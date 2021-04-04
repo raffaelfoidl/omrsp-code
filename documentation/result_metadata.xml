@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml system="https://pasta.edirepository.org" packageId="10.5281/zenodo.4661146"
+<eml:eml system="https://pasta.edirepository.org" packageId="10.5281/zenodo.4661145"
          xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd">
@@ -103,16 +103,16 @@
             <electronicMailAddress>e11775820@student.tuwien.ac.at</electronicMailAddress>
             <userId directory="https://orcid.org">0000-0002-1748-1571</userId>
         </publisher>
-        <pubPlace>https://zenodo.org/badge/latestdoi/352670789</pubPlace>
+        <pubPlace>https://doi.org/10.5281/zenodo.4662040</pubPlace>
         <methods>
             <methodStep>
                 <description>
-                    <para>Parse and extract winners of the "Best Picture" category between 1986 and 2016.</para>
+                    <para>Parse and extract winners of "Best Picture" Oscar category between 1986 and 2016.</para>
                 </description>
             </methodStep>
             <methodStep>
                 <description>
-                    <para>Parse all information about 220 movies per year from the last 30 years.</para>
+                    <para>Parse information about 220 movies per year from the last 30 years.</para>
                 </description>
             </methodStep>
             <methodStep>

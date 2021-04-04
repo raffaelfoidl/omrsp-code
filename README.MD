@@ -68,7 +68,7 @@ Files that are prefixed with an asterisk (`*`) are absolutely imperative to exec
 │   │   ├── main.html
 │   │   ├── movie.html
 │   │   └── oscar_info.html
-│   │── data_metadata.xml
+│   │── result_metadata.xml
 │   │── visualization_description.txt
 |   └── visualization_metadata.txt
 ├── result
@@ -92,8 +92,8 @@ Files that are prefixed with an asterisk (`*`) are absolutely imperative to exec
 * `documentation`: files that provide additional information about the experiment
     * `data_flow`: high-level architectural overview of how data is processed, in `PNG` and `PDF` format
     * `src`: source code documentation in `HTML` generated from docstrings, `index.html` as entrypoint for the webbrowser
-    * `metadata.xml`: [EML](https://eml.ecoinformatics.org/) compliant `XML` representation of metadata about the experiment (abstract, creator,
-      description of output data, ...)
+    * `result_metadata.xml`: [EML](https://eml.ecoinformatics.org/) compliant `XML` representation of metadata about the experiment (abstract,
+      creator, description of output data, ...)
     * `visualization_description.txt`: textual documentation/description of the output diagram
     * `visualization_metadata.txt`: metadata about the image representing the output diagram (size, resolution, MIME type, modified date, ...)
 * `result`: represents the result ("output") of the experiment
