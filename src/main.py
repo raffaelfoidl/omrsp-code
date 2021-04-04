@@ -199,15 +199,16 @@ def visualize_awarded_movies(awarded_movies: Iterable[AwardedMovie]) -> None:
     ax1.set_ylabel('Gross Revenue in the USA\n(in Millions)', weight="bold", labelpad=10)
     ax1.set_ylim([0, next_hundred_million(max(y_values_revenue))])  # so that the highest y-value is not "glued" to the top of the diagram
     ax1.yaxis.set_major_formatter(millions_formatter)  # so that numbers representing axis labels are not too big
-    ax1.plot(x_labels, y_values_revenue, color='tab:green', marker=".")
+    ax1.plot(x_labels, y_values_revenue, color='tab:green', marker=".", label="Gross Revenue")
 
     # second y-axis: display IMDb user score
     ax2 = ax1.twinx()  # the second y-axis should share the x-axis with the first y-axis
     ax2.set_ylabel('IMDb User Score', weight="bold", labelpad=7)
     ax2.set_ylim([0, 10])
     ax2.yaxis.set_major_locator(ticker.FixedLocator(np.arange(0, 11)))  # display all numbers between 0 and 10
-    ax2.plot(x_labels, y_values_score, color='tab:blue', marker=".")
+    ax2.plot(x_labels, y_values_score, color='tab:blue', marker=".", label="IMDb Score")
 
+    fig.legend(loc="lower left")
     fig.tight_layout()
     fig.savefig(awarded_movies_visualization_file)
 
