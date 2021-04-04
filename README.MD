@@ -34,7 +34,8 @@ experiment, two films are defined to be equal if and only if their titles and re
 
 ## Data Sources
 
-The project is based on two publicly available datasets which are already part of the files in this repository.
+The project is based on two publicly available datasets which are already part of the files in this repository. They are both available under the
+Creative Commons [CC0](https://creativecommons.org/publicdomain/zero/1.0/) license.
 
 * Fontes, Raphael. (2020, February). The Oscar Award, 1927 - 2020, Version 7. Retrieved March 27, 2021
   from <https://www.kaggle.com/unanimad/the-oscar-award/version/7>. 892 KB.
