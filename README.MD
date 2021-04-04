@@ -24,10 +24,15 @@
 
 ## Persistent Identifiers
 
-|  Data Object  |                                                    Badge                                                  |
-|:-------------:|:---------------------------------------------------------------------------------------------------------:|
-|  Source Code  | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4661146.svg)](https://doi.org/10.5281/zenodo.4661145) |
-| Produced Data | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662041.svg)](https://doi.org/10.5281/zenodo.4662040) |
+The table below depicts the persistent identifiers that have been reserved for different purposes related to the project. The badges always resolve to
+the latest version available.
+
+|  Data Object                                  |                                                    Badge                                                  |
+|:---------------------------------------------:|:---------------------------------------------------------------------------------------------------------:|
+| Source Code Repository                        | <https://github.com/raffaelfoidl/omrsp-code>                                                              |
+| Source Code <br/> (Including Produced Data)   | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4661145.svg)](https://doi.org/10.5281/zenodo.4661145) |
+| Produced Data <br/> (Standalone)              | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662040.svg)](https://doi.org/10.5281/zenodo.4662040) |
+| Data Management Plan                          | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662139.svg)](https://doi.org/10.5281/zenodo.4662139) |
 
 ## Abstract
 
