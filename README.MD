@@ -1,6 +1,8 @@
-[![DOI](https://zenodo.org/badge/352670789.svg)](https://zenodo.org/badge/latestdoi/352670789)
+# Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016
 
 - [Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016](#progression-of-revenue-and-imdb-score-of-oscar-best-picture-winners-from-1986-until-2016)
+    - [Persistent Identifiers](#persistent-identifiers)
+    - [Abstract](#abstract)
     - [Data Sources](#data-sources)
     - [Data Flow](#data-flow)
     - [Directory and File Structure](#directory-and-file-structure)
@@ -20,7 +22,14 @@
         - [Docker](#docker)
         - [Example Documentation Log Output](#example-documentation-log-output)
 
-# Progression of Revenue and IMDb Score of Oscar “Best Picture” Winners From 1986 Until 2016
+## Persistent Identifiers
+
+|  Data Object  |                                                    Badge                                                  |
+|:-------------:|:---------------------------------------------------------------------------------------------------------:|
+|  Source Code  | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4661146.svg)](https://doi.org/10.5281/zenodo.4661145) |
+| Produced Data | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662041.svg)](https://doi.org/10.5281/zenodo.4662040) |
+
+## Abstract
 
 This experiment serves the purpose of investigating how the gross revenue (USA) and the IMDb user score of movies that were awarded an Oscar in the
 category "Best Picture" have evolved and fluctuated over the last three decades. More specifically, movies that were released between 1986 and 2016
