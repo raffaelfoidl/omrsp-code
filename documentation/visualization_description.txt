@@ -1,0 +1,8 @@
+* The x-axis shows the release years and names of films that were awarded an Oscar in the "Best Picture" category.
+  For instance, a release year of 1994 typically means that the movie won the oscar at the ceremony in 1995.
+
+* The first (left) y-axis associates the movies with the gross revenue they generated in the USA.
+  This axis is represented by the green line.
+
+* The second (right) y-axis juxtaposes the movies with their respective IMDb user score.
+  This axis is represented by the blue line.
