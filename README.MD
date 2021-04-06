@@ -27,12 +27,13 @@
 The table below depicts the persistent identifiers that have been reserved for different purposes related to the project. The badges always resolve to
 the latest version available.
 
-|  Data Object                                  |                                                    Badge                                                  |
-|:---------------------------------------------:|:---------------------------------------------------------------------------------------------------------:|
-| Source Code Repository                        | <https://github.com/raffaelfoidl/omrsp-code>                                                              |
-| Source Code <br/> (Including Produced Data)   | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4661145.svg)](https://doi.org/10.5281/zenodo.4661145) |
-| Produced Data <br/> (Standalone)              | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662040.svg)](https://doi.org/10.5281/zenodo.4662040) |
-| Data Management Plan                          | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662139.svg)](https://doi.org/10.5281/zenodo.4662139) |
+|  Data Object                                   |                                                    Badge                                                  |
+|:----------------------------------------------:|:---------------------------------------------------------------------------------------------------------:|
+| Source Code Repository                         | <https://github.com/raffaelfoidl/omrsp-code>                                                              |
+| Source Code <br/> (Including Produced Data)    | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4661145.svg)](https://doi.org/10.5281/zenodo.4661145) |
+| Produced Data <br/> (Standalone)               | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662040.svg)](https://doi.org/10.5281/zenodo.4662040) |
+| Data Management Plan                           | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4662139.svg)](https://doi.org/10.5281/zenodo.4662139) |
+| Machine-Actionable <br /> Data Management Plan | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4664032.svg)](https://doi.org/10.5281/zenodo.4664032) |
 
 ## Abstract
 
@@ -49,7 +50,7 @@ experiment, two films are defined to be equal if and only if their titles and re
 ## Data Sources
 
 The project is based on two publicly available datasets which are already part of the files in this repository. They are both available under the
-Creative Commons [CC0](https://creativecommons.org/publicdomain/zero/1.0/) license.
+Creative Commons [CC0](https://creativecommons.org/publicdomain/zero/1.0/legalcode) license.
 
 * Fontes, Raphael. (2020, February). The Oscar Award, 1927 - 2020, Version 7. Retrieved March 27, 2021
   from <https://www.kaggle.com/unanimad/the-oscar-award/version/7>. 892 KB.
