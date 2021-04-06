@@ -90,7 +90,6 @@ Files that are prefixed with an asterisk (`*`) are absolutely imperative to exec
 │   ├── awarded_movies.csv
 │   └── awarded_movies_visualization.png
 ├── src
-│   ├── __init__.py
 │   ├── * awarded_movie.py
 │   ├── * main.py
 │   ├── * movie.py
@@ -158,8 +157,8 @@ Above command(s) create a virtual environment containing, amongst others, a copy
 In order to use the virtual environment, you need to activate it. The following table depicts how to activate it, depending on your operating system
 and shell environment:
 
-| Environment        | Command                         |
-|--------------------|---------------------------------|
+| Environment        | Command                          |
+|--------------------|----------------------------------|
 | Windows CMD        | `.venv\Scripts\activate.bat`     |
 | Windows PowerShell | `.\.venv\Scripts\activate.ps1`   |
 | Unix/MacOS bash    | `source .venv/bin/activate`      |
@@ -168,8 +167,8 @@ and shell environment:
 
 After activating the virtual environment, your shell's prompt should be prefixed with `(.venv)` and running `python`, `pip` and the like will execute
 the particular version of the Python interpreter the virtual environment is based on. On Unix-like systems, this can be verified using `which python`,
-on Windows with `where.exe python` (the `.exe` is only mandatory in PowerShell). The command should return a path to the executable within the `.venv`
-folder on top.
+on Windows with `where.exe python` (the `.exe` is only mandatory in PowerShell). The command should return a path to an executable within the `.venv`
+folder as top entry.
 
 _**Note:** When you are done with the experiment and want to exit the virtual environment, simply type `deactivate` (this command is registered upon
 activating the virtual environment) or - if that should fail - close the shell._
@@ -190,7 +189,7 @@ python src/main.py
 
 ### Option B: Docker
 
-If you don't have Python installed on your machine or do not want to install another version (if yours should not work), you can also run the
+If you don't have Python installed on your machine or do not want to install another version (if yours should be too old), you can also run the
 experiment in a Docker container.
 
 First, you need to build the image based on the provided `Dockerfile`. This can be achieved with the following command (don't forget the dot `.` at
@@ -270,8 +269,8 @@ In order to copy the results from the exited container to the host, run the foll
 docker cp omrsp_container:/home/result .
 ```
 
-This command copies the whole directory tree `/usr/src/app/result` into the current working directory (the experiment root), overwriting files that
-already exist in `./result` with the same filename.
+This command copies the whole directory tree `/home/result` from the container into the current working directory on the host (the experiment's root
+directory), overwriting files that potentially already exist in `./result` with the same filename (similar to when executing the script locally).
 
 #### Deleting the Container (Optional)
 
@@ -332,7 +331,7 @@ First, you need to change into the `src` directory because otherwise, `pdoc` is 
 cd src
 ```
 
-Lastly, trigger the re-generation of the source code documentation with the following command:
+Lastly, trigger the re-generation of the source code documentation with the following command (don't forget the dot `.` at the end):
 
 ```shell
 python -m pdoc --force --html --output-dir ../documentation .
@@ -344,7 +343,7 @@ This re-creates the documentation with `--force` (overwriting existing files) in
 
 Since image generation is quite fast, it is recommended to (re-)create the Docker image and container in order to avoid name clashes and other side
 effects that are related to an already existing container of this experiment. Hence, to be on the safe side, first delete the container (if there is
-not such container, an message will be returned, which can be safely ignored):
+no such container, an error message will be returned, which can be safely ignored):
 
 ```shell
 docker container rm omrsp_container
@@ -363,15 +362,18 @@ re-generation of the documentation:
 docker run --name omrsp_container --workdir /home/src omrsp python -m pdoc --force --html --output-dir ../documentation .
 ```
 
-This re-creates the documentation with `--force` (overwriting existing files) into a `src` sub-folder of the `documentation` directory. If you
-encountered an error `/usr/local/bin/python: No module named pdoc`, then most likely the installation of `pdoc3` failed during the image build. In
-this case, refer to the notes in [Local Python Interpreter](#local-python-interpreter)
+This re-creates the documentation with `--force` (overwriting existing files) into a `src` sub-folder of the `documentation` directory within the
+container. If you encountered an error `/usr/local/bin/python: No module named pdoc`, then most likely the installation of `pdoc3` failed during the
+image build. In this case, refer to the notes in [Local Python Interpreter](#local-python-interpreter).
 
 Finally, the generated documentation needs to be copied from the container to the host system:
 
 ```shell
 docker cp omrsp_container:/home/documentation/src ./documentation
 ```
+
+This command copies the whole directory tree `/home/documentation/src` into `documentation` within the current working directory (the experiment's
+root directory) on the host, overwriting files that potentially already exist in `./documentation` with the same filename.
 
 ### Example Documentation Log Output
 
@@ -387,4 +389,4 @@ If nothing went wrong, the output of a successful execution of `pdoc` looks some
   INSTALLED_EXTENSIONS = metadata.entry_points().get('markdown.extensions', ())
 ```
 
-The deprecation warning is library-related, can safely be ignored and will (hopefully) be fixed in future versions of `pdoc`.
+The deprecation warning is library-related, might not even occur on higher versions of Python (e.g. `3.9`) and can safely be ignored.
